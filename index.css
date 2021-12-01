@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  text-align: center;
+  background: #42517f;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 1em 0;
+}
+
+input {
+  height: 3em;
+  font-size: 1.1em;
+  padding-left: 1em;
+}
+
+.list-input {
+  width: 15em;
+}
+
+.quantity-input {
+  width: 7em;
+}
+
+.price-input {
+  width: 7em;
+}
+
+#itemForm button {
+  margin: 1em 10.2em;
+  height: 1.9em;
+  width: 4.5em;
+  font-size: 1.1em;
+  color: #000;
+  background: #f7fffe;
+  border: unset;
+  cursor: pointer;
+}
+
+#itemForm button:hover {
+  background: #427F51;
+  color: #fff;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em 0;
+}
+
+.purchased {
+  text-decoration: line-through;
+  color: #04AA6D;
+}
+
+.list {
+  margin: 0.5em;
+  background: #fff;
+  text-align: left;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25em;
+  height: 3em;
+  padding-left: 1em;
+}
+
+.list button {
+  font-size: 1em;
+  cursor: pointer;
+  height: 3em;
+  width: 3em;
+  background: #04AA6D;
+  border: none;
+  color: #fff;
+}
+
+.list button:active {
+  transform: translateY(0.1em);
+  background: #3e8e41;
+}
+
+.total-price {
+  margin-bottom: 2em;
+  font-size: 1.1em;
+}
+
+@media screen and (max-width: 660px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  input {
+    display: block;
+    margin: 1em 0 0 1em;
+    font-size: 1em;
+  }
+
+  form div {
+    width: 7em;
+    margin-top: 1em;
+  }
+
+  #itemForm button {
+    margin: unset;
+  }
+}
+
+@media screen and (max-width: 393px) {
+  .list {
+    margin: 0.5em 0;
+    width: 100%;
+    height: auto;
+  }
+}
