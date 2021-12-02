@@ -39,7 +39,6 @@ input {
 }
 
 #itemForm button {
-  margin: 1em 10.2em;
   height: 1.9em;
   width: 4.5em;
   font-size: 1.1em;
@@ -47,11 +46,16 @@ input {
   background: #f7fffe;
   border: unset;
   cursor: pointer;
+  margin-top: 1em;
 }
 
 #itemForm button:hover {
   background: #427F51;
   color: #fff;
+}
+
+.clear-button {
+  margin-right: 20.5em;
 }
 
 .list-wrapper {
@@ -86,12 +90,19 @@ input {
   width: 3em;
   background: #04AA6D;
   border: none;
-  color: #fff;
+  vertical-align: middle;
 }
 
 .list button:active {
   transform: translateY(0.1em);
   background: #3e8e41;
+}
+
+.list img {
+  height: 3em;
+  width: 3em;
+  font-size: 0.5em;
+  vertical-align: middle;
 }
 
 .total-price {
@@ -110,13 +121,8 @@ input {
     font-size: 1em;
   }
 
-  form div {
-    width: 7em;
-    margin-top: 1em;
-  }
-
-  #itemForm button {
-    margin: unset;
+  .clear-button {
+    margin-right: 1em;
   }
 }
 

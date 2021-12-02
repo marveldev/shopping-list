@@ -21,16 +21,15 @@ const populateListDiv = async () => {
         <button
           aria-label="complete" 
           type="button" 
-          class="complete-button"
           onclick="markAsPurchased(${id}, ${isPurchased})"
         >
-          <i class="fas fa-check"></i>
+          <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
-        <button aria-label="edit" type="button" class="edit-button">
-          <i class="fa fa-edit"></i>
+        <button aria-label="edit" type="button">
+          <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
-        <button aria-label="delete" type="button" class="delete-button">
-          <i class="fas fa-trash"></i>
+        <button aria-label="delete" type="button">
+          <img src="./assets/trash-icon.svg" alt="delete icon" />
         </button>
       </div>
     </div>
