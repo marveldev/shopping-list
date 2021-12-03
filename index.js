@@ -24,14 +24,18 @@ const populateListDiv = async () => {
         <button
           aria-label="complete" 
           type="button" 
-          onclick="handleButtonEvents(${id}, 'markAsPurchased', ${isPurchased})"
+          onclick="handleListButtonActions(${id}, 'markAsPurchased', ${isPurchased})"
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
         <button aria-label="edit" type="button">
           <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
-        <button aria-label="delete" type="button" onclick="handleButtonEvents(${id}, 'deleteItem')">
+        <button 
+          aria-label="delete" 
+          type="button" 
+          onclick="handleListButtonActions(${id}, 'deleteItem')"
+        >
           <img src="./assets/trash-icon.svg" alt="delete icon" />
         </button>
       </div>
@@ -54,12 +58,12 @@ itemForm.addEventListener('submit', async (event) => {
   itemForm.reset()
 })
 
-const handleButtonEvents = async (id, event, isPurchased) => {
-  if (event === 'markAsPurchased') {
+const handleListButtonActions = async (id, action, isPurchased) => {
+  if (action === 'markAsPurchased') {
     await db.lists.update(id, {isPurchased: !isPurchased})
   }
 
-  if (event === 'deleteItem') {
+  if (action === 'deleteItem') {
     await db.lists.delete(id)
   }
 
