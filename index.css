@@ -58,6 +58,10 @@ input {
   margin-right: 23em;
 }
 
+.clear:hover {
+  background: #af5371;
+}
+
 .list-wrapper {
   display: flex;
   flex-direction: column;
@@ -110,23 +114,24 @@ input {
   font-size: 1.1em;
 }
 
-.clear-modal {
+.overlay {
   display: none;
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-color: #00000066;
 }
 
-.clear-modal div {
-  background: #038a58;
-  padding: 4em 0;
-  margin: 10em auto;
+.clear-modal {
+  display: none;
+  position: absolute;
+  top: 10em;
+  left: 25%;
   width: 50%;
+  padding: 4em 0;
+  z-index: 1;
+  background: #AA0441;
 }
 
 @media screen and (max-width: 660px) {
@@ -144,8 +149,9 @@ input {
     margin-right: 1em;
   }
 
-  .clear-modal div {
-    width: 95%;
+  .clear-modal {
+    left: 0;
+    width: 100%;
   }
 }
 
