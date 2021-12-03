@@ -4,6 +4,10 @@ db.version(1).stores({ lists: '++id,name,price,quantity,isPurchased'})
 const itemForm = document.querySelector('#itemForm')
 const listDiv = document.querySelector('.list-wrapper')
 
+const toggleModalDisplay = value => {
+  document.querySelector('.clear-modal').style.display = value
+}
+
 const markAsPurchased = async (id, isPurchased) => {
   await db.lists.update(id, {isPurchased: !isPurchased})
   await populateListDiv()

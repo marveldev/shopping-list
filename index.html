@@ -21,12 +21,33 @@
           <input type="number" class="price-input" placeholder="Price" />
         </label>
         <div>
-          <button aria-label="clear" class="clear-button" type="button">Clear All</button>
-          <button aria-label="submit" type="submit">Add</button>
+          <button
+            aria-label="clear"
+            type="button"
+            class="clear button"
+            onclick="toggleModalDisplay('block')"
+          >
+            Clear All
+          </button>
+          <button aria-label="submit" type="submit" class="button">Add</button>
         </div>
       </form>
       <div class="list-wrapper"></div>
       <div class="total-price"></div>
+      <div class="clear-modal">
+        <div>
+          <p>Are you sure you want to clear all?</p>
+          <button
+            aria-label="cancel"
+            type="button"
+            class="button"
+            onclick="toggleModalDisplay('none')"
+          >
+            Cancel
+          </button>
+          <button aria-label="confirm" type="button" class="button">Confirm</button>
+        </div>
+      </div>
     </div>
     <script src="./dexie.min.js"></script>
     <script src="./index.js"></script>
