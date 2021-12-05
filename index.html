@@ -16,9 +16,9 @@
       <h1>My Shopping List</h1>
       <form id="itemForm">
         <label>
-          <input type="text" class="list-input" placeholder="Enter New List" autoFocus required />
-          <input type="number" class="quantity-input" placeholder="Quantity" />
-          <input type="number" class="price-input" placeholder="Price" />
+          <input type="text" class="list-input" placeholder="Enter List" autoFocus required />
+          <input type="number" class="quantity input" placeholder="Quantity" />
+          <input type="number" class="price input" placeholder="Price" />
         </label>
         <div>
           <button aria-label="clear" type="button" class="clear button">Clear All</button>
@@ -33,6 +33,17 @@
         <button aria-label="cancel" type="button" class="cancel button">Cancel</button>
         <button aria-label="confirm" type="button" class="confirm button">Confirm</button>
       </div>
+      <form class="edit-modal">
+        <label>
+          <input type="text" class="new-list-input" placeholder="Enter New List" autoFocus required/>
+          <input type="number" class="new-quantity input" placeholder="Quantity"/>
+          <input type="number" class="new-price input" placeholder="Price"/>
+        </label>
+        <div>
+          <button aria-label="clear" type="button" class="close button">Cancel</button>
+          <button aria-label="submit" type="submit" class="button">Add</button>
+        </div>
+      </form>
     </div>
     <script src="./dexie.min.js"></script>
     <script src="./index.js"></script>

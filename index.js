@@ -5,10 +5,11 @@ const itemForm = document.querySelector('#itemForm')
 const listDiv = document.querySelector('.list-wrapper')
 const clearButton = document.querySelector('.clear')
 const cancelButton = document.querySelector('.cancel')
+const closeButton = document.querySelector('.close')
 const confirmButton = document.querySelector('.confirm')
 
-const toggleModalDisplay = value => {
-  document.querySelector('.clear-modal').style.display = value
+const toggleModalDisplay = (selector, value) => {
+  document.querySelector(selector).style.display = value
   document.querySelector('.overlay').style.display = value
 }
 
@@ -28,7 +29,7 @@ const populateListDiv = async () => {
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
-        <button aria-label="edit" type="button">
+        <button aria-label="edit" type="button" onclick="toggleModalDisplay('.edit-modal', 'block')">
           <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
         <button 
@@ -73,10 +74,11 @@ const handleListButtonActions = async (id, action, isPurchased) => {
 const clearData = async () => {
   await db.lists.clear()
   await populateListDiv()
-  toggleModalDisplay('none')
+  toggleModalDisplay('.clear-modal','none')
 }
 
-clearButton.addEventListener('click', () => toggleModalDisplay('block'))
-cancelButton.addEventListener('click', () => toggleModalDisplay('none'))
+clearButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','block'))
+cancelButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','none'))
+closeButton.addEventListener('click', () => toggleModalDisplay('.edit-modal','none'))
 confirmButton.addEventListener('click', clearData)
 window.onload = populateListDiv

@@ -26,15 +26,7 @@ input {
   padding-left: 1em;
 }
 
-.list-input {
-  width: 15em;
-}
-
-.quantity-input {
-  width: 7em;
-}
-
-.price-input {
+.input {
   width: 7em;
 }
 
@@ -55,7 +47,7 @@ input {
 }
 
 .clear {
-  margin-right: 23em;
+  margin-right: 21.3em;
 }
 
 .clear:hover {
@@ -123,7 +115,8 @@ input {
   background-color: #00000066;
 }
 
-.clear-modal {
+.clear-modal,
+.edit-modal {
   display: none;
   position: absolute;
   top: 10em;
@@ -149,7 +142,8 @@ input {
     margin-right: 1em;
   }
 
-  .clear-modal {
+  .clear-modal,
+  .edit-modal {
     left: 0;
     width: 100%;
   }
