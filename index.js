@@ -7,10 +7,18 @@ const clearButton = document.querySelector('.clear')
 const cancelButton = document.querySelector('.cancel')
 const closeButton = document.querySelector('.close')
 const confirmButton = document.querySelector('.confirm')
+const editModal = document.querySelector('.edit-modal')
+
+let selectedListId
 
 const toggleModalDisplay = (selector, value) => {
   document.querySelector(selector).style.display = value
   document.querySelector('.overlay').style.display = value
+}
+
+const openEditModal = id => {
+  selectedListId = id
+  toggleModalDisplay('.edit-modal', 'block')
 }
 
 const populateListDiv = async () => {
@@ -25,11 +33,11 @@ const populateListDiv = async () => {
         <button
           aria-label="complete" 
           type="button" 
-          onclick="handleListButtonActions(${id}, 'markAsPurchased', ${isPurchased})"
+          onclick="handleListButtonActions(${id}, 'markAsPurchased')"
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
-        <button aria-label="edit" type="button" onclick="toggleModalDisplay('.edit-modal', 'block')">
+        <button aria-label="edit" type="button" onclick="openEditModal(${id})">
           <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
         <button 
@@ -51,21 +59,30 @@ itemForm.addEventListener('submit', async (event) => {
   event.preventDefault()
 
   const name = document.querySelector('.list-input').value
-  const price = document.querySelector('.price-input').value
-  const quantity = document.querySelector('.quantity-input').value
+  const price = document.querySelector('.price').value
+  const quantity = document.querySelector('.quantity').value
 
   await db.lists.add({ name, price, quantity, isPurchased: false })
   await populateListDiv()
   itemForm.reset()
 })
 
-const handleListButtonActions = async (id, action, isPurchased) => {
-  if (action === 'markAsPurchased') {
-    await db.lists.update(id, {isPurchased: !isPurchased})
-  }
+const handleListButtonActions = async (id, action) => {
+  const name = document.querySelector('.new-list-input').value
+  const price = document.querySelector('.new-price').value
+  const quantity = document.querySelector('.new-quantity').value
 
-  if (action === 'deleteItem') {
-    await db.lists.delete(id)
+  switch (action) {
+    case 'markAsPurchased':
+      await db.lists.update(id, {isPurchased: !id.isPurchased})
+      break;
+    case 'deleteItem':
+      await db.lists.delete(id)
+      break;
+    case 'editItem':
+      await db.lists.update(id, {name, price, quantity})
+      toggleModalDisplay('.edit-modal', 'none')
+      break;
   }
 
   await populateListDiv()
@@ -80,5 +97,6 @@ const clearData = async () => {
 clearButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','block'))
 cancelButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','none'))
 closeButton.addEventListener('click', () => toggleModalDisplay('.edit-modal','none'))
+editModal.addEventListener('submit', () => handleListButtonActions(selectedListId, 'editItem'))
 confirmButton.addEventListener('click', clearData)
 window.onload = populateListDiv

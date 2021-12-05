@@ -127,6 +127,13 @@ input {
   background: #AA0441;
 }
 
+@media screen and (max-width: 980px) {
+  .edit-modal {
+    left: 0;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 660px) {
   h1 {
     font-size: 1.5em;
