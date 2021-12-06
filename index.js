@@ -33,7 +33,7 @@ const populateListDiv = async () => {
         <button
           aria-label="complete" 
           type="button" 
-          onclick="handleListButtonActions(${id}, 'markAsPurchased')"
+          onclick="handleListButtonActions(${id}, 'markAsPurchased', ${isPurchased})"
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
@@ -67,14 +67,14 @@ itemForm.addEventListener('submit', async (event) => {
   itemForm.reset()
 })
 
-const handleListButtonActions = async (id, action) => {
+const handleListButtonActions = async (id, action, isPurchased) => {
   const name = document.querySelector('.new-list-input').value
   const price = document.querySelector('.new-price').value
   const quantity = document.querySelector('.new-quantity').value
 
   switch (action) {
     case 'markAsPurchased':
-      await db.lists.update(id, {isPurchased: !id.isPurchased})
+      await db.lists.update(id, {isPurchased: !isPurchased})
       break;
     case 'deleteItem':
       await db.lists.delete(id)
