@@ -3,22 +3,44 @@ db.version(1).stores({ lists: '++id,name,price,quantity,isPurchased'})
 
 const itemForm = document.querySelector('#itemForm')
 const listDiv = document.querySelector('.list-wrapper')
-const clearButton = document.querySelector('.clear')
+const clearAllButton = document.querySelector('.clear')
 const cancelButton = document.querySelector('.cancel')
-const closeButton = document.querySelector('.close')
 const confirmButton = document.querySelector('.confirm')
-const editModal = document.querySelector('.edit-modal')
-
-let selectedListId
+const editModalDiv = document.querySelector('.edit-modal-wrapper')
 
 const toggleModalDisplay = (selector, value) => {
   document.querySelector(selector).style.display = value
   document.querySelector('.overlay').style.display = value
 }
 
-const openEditModal = id => {
-  selectedListId = id
-  toggleModalDisplay('.edit-modal', 'block')
+const openEditModal = (id, price, quantity) => {
+  editModalDiv.innerHTML = `
+    <form class="edit-modal">
+      <label>
+        <input type="text" class="new-list-input" placeholder="Enter New List" autoFocus required />
+        <input type="number" class="new-quantity input" value="${quantity}" placeholder="Quantity"/>
+        <input type="number" class="new-price input" value="${price}" placeholder="Price"/>
+      </label>
+      <div>
+        <button 
+          aria-label="clear" 
+          type="button" 
+          class="button" 
+          onclick="toggleModalDisplay('.edit-modal', 'none')"
+        >
+          Cancel
+        </button>
+        <button 
+          aria-label="submit" 
+          type="submit" 
+          class="button" 
+          onclick="handleListButtonActions(id, 'editItem')"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  `
 }
 
 const populateListDiv = async () => {
@@ -37,7 +59,7 @@ const populateListDiv = async () => {
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
-        <button aria-label="edit" type="button" onclick="openEditModal(${id})">
+        <button aria-label="edit" type="button" onclick="openEditModal(${id}, ${price}, ${quantity})">
           <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
         <button 
@@ -94,9 +116,7 @@ const clearData = async () => {
   toggleModalDisplay('.clear-modal','none')
 }
 
-clearButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','block'))
+clearAllButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','block'))
 cancelButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','none'))
-closeButton.addEventListener('click', () => toggleModalDisplay('.edit-modal','none'))
-editModal.addEventListener('submit', () => handleListButtonActions(selectedListId, 'editItem'))
 confirmButton.addEventListener('click', clearData)
 window.onload = populateListDiv

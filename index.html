@@ -28,22 +28,12 @@
       <div class="list-wrapper"></div>
       <div class="total-price"></div>
       <div class="overlay"></div>
-      <div class="clear-modal">
+      <div class="clear-all-modal">
         <p>Are you sure you want to clear all?</p>
         <button aria-label="cancel" type="button" class="cancel button">Cancel</button>
         <button aria-label="confirm" type="button" class="confirm button">Confirm</button>
       </div>
-      <form class="edit-modal">
-        <label>
-          <input type="text" class="new-list-input" placeholder="Enter New List" autoFocus required/>
-          <input type="number" class="new-quantity input" placeholder="Quantity"/>
-          <input type="number" class="new-price input" placeholder="Price"/>
-        </label>
-        <div>
-          <button aria-label="clear" type="button" class="close button">Cancel</button>
-          <button aria-label="submit" type="submit" class="button">Add</button>
-        </div>
-      </form>
+      <div class="edit-modal-wrapper"></div>
     </div>
     <script src="./dexie.min.js"></script>
     <script src="./index.js"></script>
