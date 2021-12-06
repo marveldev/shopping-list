@@ -34,7 +34,7 @@ const openEditModal = (id, price, quantity) => {
           aria-label="submit" 
           type="submit" 
           class="button" 
-          onclick="handleListButtonActions(id, 'editItem')"
+          onclick="handleListButtonActions('editItem', ${id})"
         >
           Add
         </button>
@@ -55,7 +55,7 @@ const populateListDiv = async () => {
         <button
           aria-label="complete" 
           type="button" 
-          onclick="handleListButtonActions(${id}, 'markAsPurchased', ${isPurchased})"
+          onclick="handleListButtonActions('markAsPurchased', ${id}, ${isPurchased})"
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
@@ -65,7 +65,7 @@ const populateListDiv = async () => {
         <button 
           aria-label="delete" 
           type="button" 
-          onclick="handleListButtonActions(${id}, 'deleteItem')"
+          onclick="handleListButtonActions('deleteItem', ${id})"
         >
           <img src="./assets/trash-icon.svg" alt="delete icon" />
         </button>
@@ -89,7 +89,7 @@ itemForm.addEventListener('submit', async (event) => {
   itemForm.reset()
 })
 
-const handleListButtonActions = async (id, action, isPurchased) => {
+const handleListButtonActions = async (action, id, isPurchased) => {
   const name = document.querySelector('.new-list-input').value
   const price = document.querySelector('.new-price').value
   const quantity = document.querySelector('.new-quantity').value
@@ -105,18 +105,23 @@ const handleListButtonActions = async (id, action, isPurchased) => {
       await db.lists.update(id, {name, price, quantity})
       toggleModalDisplay('.edit-modal', 'none')
       break;
+    case 'clearData':
+      await db.lists.clear()
+      toggleModalDisplay('.clear-all-modal','none')
+      break;
   }
 
   await populateListDiv()
 }
 
-const clearData = async () => {
-  await db.lists.clear()
-  await populateListDiv()
-  toggleModalDisplay('.clear-modal','none')
-}
+clearAllButton.addEventListener('click', () =>
+  toggleModalDisplay('.clear-all-modal','block')
+)
 
-clearAllButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','block'))
-cancelButton.addEventListener('click', () => toggleModalDisplay('.clear-modal','none'))
-confirmButton.addEventListener('click', clearData)
+cancelButton.addEventListener('click', () =>
+  toggleModalDisplay('.clear-all-modal','none')
+)
+
+confirmButton.addEventListener('click', () => handleListButtonActions('clearData'))
+
 window.onload = populateListDiv
