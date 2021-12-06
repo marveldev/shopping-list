@@ -13,11 +13,11 @@ const toggleModalDisplay = (selector, value) => {
   document.querySelector('.overlay').style.display = value
 }
 
-const openEditModal = (id, price, quantity) => {
+const openEditModal = (id, name, price, quantity) => {
   editModalDiv.innerHTML = `
     <form class="edit-modal">
       <label>
-        <input type="text" class="new-list-input" placeholder="Enter New List" autoFocus required />
+        <input type="text" class="new-list-input" value="${name}" placeholder="Enter New List" autoFocus required />
         <input type="number" class="new-quantity input" value="${quantity}" placeholder="Quantity"/>
         <input type="number" class="new-price input" value="${price}" placeholder="Price"/>
       </label>
@@ -46,25 +46,29 @@ const openEditModal = (id, price, quantity) => {
 const populateListDiv = async () => {
   const lists = await db.lists.reverse().toArray()
 
-  listDiv.innerHTML = lists.map(({ id, name, price, quantity, isPurchased}) => `
+  listDiv.innerHTML = lists.map(({ id, name, price, quantity, isPurchased }) => `
     <div class="list">
       <span class=${isPurchased && 'purchased'}>
         ${name} <br>$${price} X ${quantity}
       </span>
       <div>
         <button
-          aria-label="complete" 
-          type="button" 
+          aria-label="complete"
+          type="button"
           onclick="handleListButtonActions('markAsPurchased', ${id}, ${isPurchased})"
         >
           <img src="./assets/complete-icon.svg" alt="complete icon" />
         </button>
-        <button aria-label="edit" type="button" onclick="openEditModal(${id}, ${price}, ${quantity})">
+        <button 
+          aria-label="edit" 
+          type="button" 
+          onclick="openEditModal(${id}, '${name}', ${price}, ${quantity})"
+        >
           <img src="./assets/edit-icon.svg" alt="edit icon" />
         </button>
-        <button 
-          aria-label="delete" 
-          type="button" 
+        <button
+          aria-label="delete"
+          type="button"
           onclick="handleListButtonActions('deleteItem', ${id})"
         >
           <img src="./assets/trash-icon.svg" alt="delete icon" />
@@ -90,9 +94,9 @@ itemForm.addEventListener('submit', async (event) => {
 })
 
 const handleListButtonActions = async (action, id, isPurchased) => {
-  const name = document.querySelector('.new-list-input').value
-  const price = document.querySelector('.new-price').value
-  const quantity = document.querySelector('.new-quantity').value
+  const name = document.querySelector('.new-list-input')?.value
+  const price = document.querySelector('.new-price')?.value
+  const quantity = document.querySelector('.new-quantity')?.value
 
   switch (action) {
     case 'markAsPurchased':

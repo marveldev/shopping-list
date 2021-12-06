@@ -117,15 +117,9 @@ input {
 
 .clear-all-modal {
   display: none;
-  position: absolute;
-  top: 10em;
-  left: 25%;
-  width: 50%;
-  padding: 4em 0;
-  z-index: 1;
-  background: #AA0441;
 }
 
+.clear-all-modal,
 .edit-modal {
   position: absolute;
   top: 10em;
