@@ -52,13 +52,16 @@ const populateListDiv = async () => {
         ${name} <br>$${price} X ${quantity}
       </span>
       <div>
-        <button
-          aria-label="complete"
-          type="button"
-          onclick="handleListButtonActions('markAsPurchased', ${id}, ${isPurchased})"
-        >
-          <img src="./assets/complete-icon.svg" alt="complete icon" />
-        </button>
+        <label class="container">
+          <input 
+            type="checkbox"
+            name="checkbox"
+            class="checkbox" 
+            onchange="handleListButtonActions('markAsPurchased', ${id}, ${isPurchased})"
+            ${isPurchased && 'checked'}
+          />
+          <span class="checkmark"></span>
+        </label>
         <button 
           aria-label="edit" 
           type="button" 
