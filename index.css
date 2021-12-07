@@ -24,6 +24,8 @@ input {
   height: 3em;
   font-size: 1.1em;
   padding-left: 1em;
+  background: #fff;
+  border: unset;
 }
 
 .input {
@@ -39,6 +41,7 @@ input {
   border: unset;
   cursor: pointer;
   margin-top: 1em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button:hover {
@@ -89,7 +92,7 @@ input {
   vertical-align: middle;
 }
 
-.list button:active {
+button:active {
   transform: translateY(0.1em);
   background: #3e8e41;
 }

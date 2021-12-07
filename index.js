@@ -85,8 +85,8 @@ itemForm.addEventListener('submit', async (event) => {
   event.preventDefault()
 
   const name = document.querySelector('.list-input').value
-  const price = document.querySelector('.price').value
-  const quantity = document.querySelector('.quantity').value
+  const price = document.querySelector('.price').value || 0
+  const quantity = document.querySelector('.quantity').value || 0
 
   await db.lists.add({ name, price, quantity, isPurchased: false })
   await populateListDiv()
