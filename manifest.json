@@ -1,9 +1,9 @@
 {
     "theme_color": "#ffff",
-    "background_color": "#ffff",
+    "background_color": "#42517f",
     "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
+    "scope": "/shopping-list/",
+    "start_url": "/shopping-list/",
     "name": "My shopping list",
     "short_name": "Shopping-list",
     "icons": [
