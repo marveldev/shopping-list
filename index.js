@@ -55,7 +55,6 @@ const populateListDiv = async () => {
         <label class="container">
           <input 
             type="checkbox"
-            name="checkbox"
             class="checkbox" 
             onchange="handleListButtonActions('markAsPurchased', ${id}, ${isPurchased})"
             ${isPurchased && 'checked'}
