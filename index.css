@@ -136,31 +136,12 @@ input {
 .checkmark:after {
   display: none;
   content: "";
-  margin: 0.35em 0.1em;
-  font-size: 2.3em;
-  border-right: 3px solid transparent;
-  border-bottom: 3px solid transparent;
-  transform-origin: 0 100%;
-  animation: checkbox-check 125ms 250ms forwards;
-}
-
-@keyframes checkbox-check{
-  0%{
-    width: 0;
-    height: 0;
-    border-color: #fff;
-  }
-  33%{
-    width: 0.2em;
-    height: 0;
-    transform: translate3d(0,0,0) rotate(45deg);
-  }
-  100%{
-    width: 0.2em;
-    height: 0.5em;
-    border-color: #fff;
-    transform: translate3d(0,-0.5em,0) rotate(45deg);
-  }
+  font-size: 2em;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  width: 0.2em;
+  height: 0.6em;
+  transform: translate3d(0.3em,0.05em,0) rotate(45deg);
 }
 
 .total-price {
